@@ -46,4 +46,10 @@ public interface MapScreenView {
      * @param message
      */
     void showUiMessage(String message);
+
+    /**
+     * Used to update search field text content
+     * @param toString
+     */
+    void updateSearchFieldContent(String toString);
 }

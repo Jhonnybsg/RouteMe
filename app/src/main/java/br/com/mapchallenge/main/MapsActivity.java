@@ -114,7 +114,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         progressDrawable.setColorFilter(Color.BLUE, android.graphics.PorterDuff.Mode.SRC_IN);
         progressBar.setProgressDrawable(progressDrawable);
 
-        autocompleteAdapter = new AutocompleteAdapter(this);
+        autocompleteAdapter = new AutocompleteAdapter(this, this);
         autocompleteList.setAdapter(autocompleteAdapter);
 
         searchEditText.addTextChangedListener(searchFieldWatcher);
@@ -134,6 +134,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
             if (actionId == EditorInfo.IME_ACTION_SEARCH && v.getText().length() != 0) {
                 screenPresenter.searchLocation(autocompleteAdapter.getItemPlaceId(0));
+                searchEditText.setText(autocompleteAdapter.getItemContent(0));
                 hideSoftKeyboard(MapsActivity.this);
                 searchEditText.clearFocus();
                 return true;
@@ -333,6 +334,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void showUiMessage(String message) {
         Toast.makeText(MapsActivity.this, message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void updateSearchFieldContent(String term) {
+        this.searchEditText.setText(term);
     }
 
     /**

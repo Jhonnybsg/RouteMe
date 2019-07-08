@@ -41,7 +41,10 @@
             android:hint="@string/search"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:padding="10dp" />
+            android:paddingRight="50dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"/>
 
         <ImageButton
             android:id="@+id/clear_button"
